@@ -273,6 +273,61 @@
       transform: translate(2px, -2px);
     }
 
+    /* ── QUOTE ── */
+    .quote-section {
+      margin-top: 3.5rem;
+      max-width: 560px;
+      text-align: center;
+      animation: fadeUp 0.7s 0.56s ease both;
+    }
+    .quote-divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 1.8rem;
+    }
+    .quote-icon {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: rgba(201,168,76,0.15);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--cream);
+      opacity: 0.85;
+      transition: opacity 0.4s;
+    }
+    .quote-author {
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-top: 1rem;
+      opacity: 0.6;
+    }
+    .quote-refresh {
+      background: none;
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--slate);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      cursor: pointer;
+      margin-top: 1.4rem;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .quote-refresh:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
     /* ── FOOTER ── */
     footer {
       margin-top: 4rem;
@@ -380,6 +435,14 @@
 
     </div>
 
+    <div class="quote-section">
+      <div class="quote-divider"></div>
+      <div class="quote-icon">"</div>
+      <div class="quote-text" id="quote-text">The only way to do great work is to love what you do.</div>
+      <div class="quote-author" id="quote-author">— Steve Jobs</div>
+      <button class="quote-refresh" id="btn-new-quote">New Quote</button>
+    </div>
+
     <footer>
       <div class="footer-line"></div>
       <p class="footer-text">
@@ -389,5 +452,41 @@
 
   </div>
 
+<script>
+const quotes = [
+  { quote: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { quote: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+  { quote: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+  { quote: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+  { quote: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+  { quote: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" },
+  { quote: "Do what you can, with what you have, where you are.", author: "Theodore Roosevelt" },
+  { quote: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb" },
+  { quote: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
+  { quote: "Everything you've ever wanted is on the other side of fear.", author: "George Addair" },
+  { quote: "Hard work beats talent when talent doesn't work hard.", author: "Tim Notke" },
+  { quote: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+  { quote: "The only impossible journey is the one you never begin.", author: "Tony Robbins" },
+  { quote: "You are never too old to set another goal or to dream a new dream.", author: "C.S. Lewis" },
+  { quote: "Strive not to be a success, but rather to be of value.", author: "Albert Einstein" },
+  { quote: "I have not failed. I've just found 10,000 ways that won't work.", author: "Thomas Edison" },
+  { quote: "The secret of getting ahead is getting started.", author: "Mark Twain" },
+  { quote: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+  { quote: "Small daily improvements over time lead to stunning results.", author: "Robin Sharma" },
+  { quote: "Discipline is choosing between what you want now and what you want most.", author: "Abraham Lincoln" },
+  { quote: "The man who moves a mountain begins by carrying away small stones.", author: "Confucius" },
+  { quote: "Be so good they can't ignore you.", author: "Steve Martin" },
+  { quote: "If you want to go fast, go alone. If you want to go far, go together.", author: "African Proverb" },
+];
+
+function showRandomQuote() {
+  const q = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById('quote-text').textContent = q.quote;
+  document.getElementById('quote-author').textContent = '— ' + q.author;
+}
+
+showRandomQuote();
+document.getElementById('btn-new-quote').addEventListener('click', showRandomQuote);
+</script>
 </body>
 </html>
