@@ -289,6 +289,11 @@
       transform: translate(2px, -2px);
     }
 
+    .card:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
     /* ── QUOTE ── */
     .quote-section {
       margin-top: 3.5rem;
@@ -404,6 +409,23 @@
   <meta name="google-adsense-account" content="ca-pub-6478161332276600">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6478161332276600"
      crossorigin="anonymous"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23060d1f' width='100' height='100' rx='20'/><text x='50' y='68' text-anchor='middle' font-size='45' fill='%23c9a84c' font-family='serif' font-weight='bold'>AS</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23060d1f' width='100' height='100' rx='20'/><text x='50' y='68' text-anchor='middle' font-size='45' fill='%23c9a84c' font-family='serif' font-weight='bold'>AS</text></svg>">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Akib Saify",
+  "url": "https://0110059.xyz",
+  "jobTitle": "Compliance Professional",
+  "sameAs": [
+    "https://blog.0110059.xyz",
+    "https://akibsaify.wordpress.com",
+    "https://www.youtube.com/@TalesCaught",
+    "https://www.youtube.com/@QuizDropDaily"
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -419,92 +441,12 @@
       <div class="divider"></div>
     </header>
 
-    <div class="cards">
-
-      <a href="https://blog.0110059.xyz" class="card" target="_blank">
-        <div class="card-num">01</div>
-        <div class="card-icon">📋</div>
-        <div class="card-body">
-          <div class="card-title">Portfolio</div>
-          <div class="card-desc">Professional profile, experience & expertise in Legal & Compliance Operations.</div>
-        </div>
-        <div class="card-footer">
-          <span class="card-url">blog.0110059.xyz</span>
-          <div class="card-arrow">↗</div>
-        </div>
-      </a>
-
-      <a href="https://deals.0110059.xyz" class="card" target="_blank">
-        <div class="card-num">02</div>
-        <div class="card-icon">🔥</div>
-        <div class="card-body">
-          <div class="card-title">Deal Drops</div>
-          <div class="card-desc">Daily curated deals, discounts & money-saving finds — India's best offers, every day.</div>
-        </div>
-        <div class="card-footer">
-          <span class="card-url">deals.0110059.xyz</span>
-          <div class="card-arrow">↗</div>
-        </div>
-      </a>
-
-      <a href="https://habits.0110059.xyz" class="card" target="_blank">
-        <div class="card-num">03</div>
-        <div class="card-icon">⚡</div>
-        <div class="card-body">
-          <div class="card-title">HabitStack</div>
-          <div class="card-desc">Build better habits, one stack at a time. Track, improve & stay consistent.</div>
-        </div>
-        <div class="card-footer">
-          <span class="card-url">habits.0110059.xyz</span>
-          <div class="card-arrow">↗</div>
-        </div>
-      </a>
-
-      <a href="https://akibsaify.wordpress.com" class="card" target="_blank">
-        <div class="card-num">04</div>
-        <div class="card-icon">✍️</div>
-        <div class="card-body">
-          <div class="card-title">Journal</div>
-          <div class="card-desc">Poetry, philosophy & life reflections — personal essays on growing up, thinking deeply & finding meaning.</div>
-        </div>
-        <div class="card-footer">
-          <span class="card-url">akibsaify.wordpress.com</span>
-          <div class="card-arrow">↗</div>
-        </div>
-      </a>
-
-      <a href="https://www.youtube.com/@TalesCaught" class="card" target="_blank">
-        <div class="card-num">05</div>
-        <div class="card-icon">🎬</div>
-        <div class="card-body">
-          <div class="card-title">TalesCaught</div>
-          <div class="card-desc">Viral Reddit stories narrated as YouTube Shorts — drama, revenge & wild confessions daily.</div>
-        </div>
-        <div class="card-footer">
-          <span class="card-url">youtube.com/@TalesCaught</span>
-          <div class="card-arrow">↗</div>
-        </div>
-      </a>
-
-      <a href="https://www.youtube.com/@QuizDropDaily" class="card" target="_blank">
-        <div class="card-num">06</div>
-        <div class="card-icon">🧠</div>
-        <div class="card-body">
-          <div class="card-title">QuizDropDaily</div>
-          <div class="card-desc">Daily trivia quizzes as YouTube Shorts — test your knowledge across science, history, sports & more.</div>
-        </div>
-        <div class="card-footer">
-          <span class="card-url">youtube.com/@QuizDropDaily</span>
-          <div class="card-arrow">↗</div>
-        </div>
-      </a>
-
-    </div>
+    <div class="cards" id="cards"></div>
 
     <div class="quote-section">
       <div class="quote-divider"></div>
       <div class="quote-icon">"</div>
-      <div class="quote-text" id="quote-text">The only way to do great work is to love what you do.</div>
+      <blockquote class="quote-text" id="quote-text">The only way to do great work is to love what you do.</blockquote>
       <div class="quote-author" id="quote-author">— Steve Jobs</div>
       <button class="quote-refresh" id="btn-new-quote">New Quote</button>
     </div>
@@ -565,6 +507,31 @@ async function showRandomQuote() {
     showLocalQuote();
   }
 }
+
+// ── CARDS ──
+const cards = [
+  { href: "https://blog.0110059.xyz", icon: "📋", title: "Portfolio", desc: "Professional profile, experience & expertise in Legal & Compliance Operations.", url: "blog.0110059.xyz" },
+  { href: "https://deals.0110059.xyz", icon: "🔥", title: "Deal Drops", desc: "Daily curated deals, discounts & money-saving finds — India's best offers, every day.", url: "deals.0110059.xyz" },
+  { href: "https://habits.0110059.xyz", icon: "⚡", title: "HabitStack", desc: "Build better habits, one stack at a time. Track, improve & stay consistent.", url: "habits.0110059.xyz" },
+  { href: "https://akibsaify.wordpress.com", icon: "✍️", title: "Journal", desc: "Poetry, philosophy & life reflections — personal essays on growing up, thinking deeply & finding meaning.", url: "akibsaify.wordpress.com" },
+  { href: "https://www.youtube.com/@TalesCaught", icon: "🎬", title: "TalesCaught", desc: "Viral Reddit stories narrated as YouTube Shorts — drama, revenge & wild confessions daily.", url: "youtube.com/@TalesCaught" },
+  { href: "https://www.youtube.com/@QuizDropDaily", icon: "🧠", title: "QuizDropDaily", desc: "Daily trivia quizzes as YouTube Shorts — test your knowledge across science, history, sports & more.", url: "youtube.com/@QuizDropDaily" },
+];
+
+document.getElementById('cards').innerHTML = cards.map((c, i) =>
+  `<a class="card" href="${c.href}" target="_blank" rel="noopener">
+    <span class="card-num">${String(i + 1).padStart(2, '0')}</span>
+    <div class="card-icon">${c.icon}</div>
+    <div class="card-body">
+      <div class="card-title">${c.title}</div>
+      <div class="card-desc">${c.desc}</div>
+    </div>
+    <div class="card-footer">
+      <span class="card-url">${c.url}</span>
+      <span class="card-arrow">↗</span>
+    </div>
+  </a>`
+).join('');
 
 showRandomQuote();
 document.getElementById('btn-new-quote').addEventListener('click', showRandomQuote);
