@@ -145,7 +145,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       width: 100%;
-      max-width: 860px;
+      max-width: 960px;
     }
 
     .card {
@@ -164,8 +164,11 @@
     }
 
     .card:nth-child(1) { animation: fadeUp 0.7s 0.2s ease both; }
-    .card:nth-child(2) { animation: fadeUp 0.7s 0.32s ease both; }
-    .card:nth-child(3) { animation: fadeUp 0.7s 0.44s ease both; }
+    .card:nth-child(2) { animation: fadeUp 0.7s 0.28s ease both; }
+    .card:nth-child(3) { animation: fadeUp 0.7s 0.36s ease both; }
+    .card:nth-child(4) { animation: fadeUp 0.7s 0.44s ease both; }
+    .card:nth-child(5) { animation: fadeUp 0.7s 0.52s ease both; }
+    .card:nth-child(6) { animation: fadeUp 0.7s 0.60s ease both; }
 
     .card::before {
       content: '';
@@ -374,7 +377,6 @@
     }
     @media (min-width: 721px) and (max-width: 920px) {
       .cards { grid-template-columns: 1fr 1fr; max-width: 580px; }
-      .card:last-child { grid-column: 1 / -1; }
     }
   </style>
   <!-- Google Analytics -->
@@ -445,6 +447,45 @@
         </div>
       </a>
 
+      <a href="https://akibsaify.wordpress.com" class="card" target="_blank">
+        <div class="card-num">04</div>
+        <div class="card-icon">✍️</div>
+        <div class="card-body">
+          <div class="card-title">Journal</div>
+          <div class="card-desc">Poetry, philosophy & life reflections — personal essays on growing up, thinking deeply & finding meaning.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">akibsaify.wordpress.com</span>
+          <div class="card-arrow">↗</div>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@TalesCaught" class="card" target="_blank">
+        <div class="card-num">05</div>
+        <div class="card-icon">🎬</div>
+        <div class="card-body">
+          <div class="card-title">TalesCaught</div>
+          <div class="card-desc">Viral Reddit stories narrated as YouTube Shorts — drama, revenge & wild confessions daily.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">youtube.com/@TalesCaught</span>
+          <div class="card-arrow">↗</div>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@QuizDropDaily" class="card" target="_blank">
+        <div class="card-num">06</div>
+        <div class="card-icon">🧠</div>
+        <div class="card-body">
+          <div class="card-title">QuizDropDaily</div>
+          <div class="card-desc">Daily trivia quizzes as YouTube Shorts — test your knowledge across science, history, sports & more.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">youtube.com/@QuizDropDaily</span>
+          <div class="card-arrow">↗</div>
+        </div>
+      </a>
+
     </div>
 
     <div class="quote-section">
@@ -491,10 +532,25 @@ const quotes = [
   { quote: "If you want to go fast, go alone. If you want to go far, go together.", author: "African Proverb" },
 ];
 
-function showRandomQuote() {
+// Quotes API URL — update this once your Cloudflare Worker is deployed
+const QUOTES_API = null; // e.g. 'https://quotes-api.your-worker.workers.dev/random'
+
+function showLocalQuote() {
   const q = quotes[Math.floor(Math.random() * quotes.length)];
   document.getElementById('quote-text').textContent = q.quote;
   document.getElementById('quote-author').textContent = '— ' + q.author;
+}
+
+async function showRandomQuote() {
+  if (!QUOTES_API) return showLocalQuote();
+  try {
+    const res = await fetch(QUOTES_API);
+    const q = await res.json();
+    document.getElementById('quote-text').textContent = q.quote;
+    document.getElementById('quote-author').textContent = '— ' + q.author;
+  } catch {
+    showLocalQuote();
+  }
 }
 
 showRandomQuote();
