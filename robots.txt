@@ -23,6 +23,6 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://0110059.xyz/sitemap.xml
-Sitemap: https://tools.0110059.xyz/sitemap.xml
-Sitemap: https://deals.0110059.xyz/sitemap.xml
+Sitemap: https://akibsaify.in/sitemap.xml
+Sitemap: https://tools.akibsaify.in/sitemap.xml
+Sitemap: https://deals.akibsaify.in/sitemap.xml
